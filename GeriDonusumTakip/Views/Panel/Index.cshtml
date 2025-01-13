@@ -1,0 +1,59 @@
+﻿@model DashboardViewModel
+@{
+    ViewData["Title"] = "Ana Sayfa";
+    Layout = "_PanelLayout";
+}
+
+<div class="floating-leaves">
+    <div class="leaf">🌿</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🌿</div>
+</div>
+
+@if (TempData["Mesaj"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i>@TempData["Mesaj"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="welcome-card">
+    <h2>Hoş Geldiniz!</h2>
+    <p>Bugünün Tarihi: @DateTime.Now.ToString("dd MMMM yyyy")</p>
+</div>
+
+<div class="dashboard-cards">
+    <!-- Özet Kartları -->
+    <div class="summary-card">
+        <div class="card-icon">♻️</div>
+        <div class="card-content">
+            <h3>Toplam Geri Dönüşüm</h3>
+            <p class="card-value">@Model.ToplamGeriDonusum.ToString("N1") kg</p>
+        </div>
+    </div>
+
+    <div class="summary-card">
+        <div class="card-icon">🌳</div>
+        <div class="card-content">
+            <h3>Kurtarılan Ağaç</h3>
+            <p class="card-value">@Model.KurtarilanAgac.ToString("N1") adet</p>
+        </div>
+    </div>
+
+    <div class="summary-card">
+        <div class="card-icon">💧</div>
+        <div class="card-content">
+            <h3>Tasarruf Edilen Su</h3>
+            <p class="card-value">@Model.TasarrufEdilenSu.ToString("N1") Lt</p>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="@Url.Action("GeriDonusumKayit", "Panel")" class="btn btn-success">
+        <i class="fas fa-plus-circle me-2"></i>Yeni Geri Dönüşüm Ekle
+    </a>
+</div>

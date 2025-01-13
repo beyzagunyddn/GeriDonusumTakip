@@ -1,0 +1,37 @@
+@model List<GeriDonusum>
+@{
+    ViewData["Title"] = "Geri Dönüşüm Kayıtlarım";
+    Layout = "_PanelLayout";
+}
+
+<div class="list-container">
+    <div class="list-header">
+        <h2>📋 Geri Dönüşüm Kayıtlarım</h2>
+    </div>
+
+    @if (TempData["Mesaj"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mesaj"]</div>
+    }
+
+    <div class="recycling-list">
+        @foreach (var kayit in Model)
+        {
+            <div class="recycling-item">
+                <div class="item-info">
+                    <span class="item-type">@kayit.Tur</span>
+                    <span class="item-amount">@kayit.Miktar.ToString("N1") kg</span>
+                    <span class="item-date">@kayit.Tarih.ToString("dd.MM.yyyy")</span>
+                </div>
+                <div class="item-actions">
+                    <form asp-action="GeriDonusumSil" method="post" style="display: inline;">
+                        <input type="hidden" name="id" value="@kayit.Id" />
+                        <button type="submit" class="btn-delete" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?')">
+                            <span>🗑️</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div> 

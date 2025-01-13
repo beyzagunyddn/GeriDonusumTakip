@@ -1,0 +1,190 @@
+@model IstatistikViewModel
+@{
+    ViewData["Title"] = "İstatistikler";
+    Layout = "_PanelLayout";
+}
+
+<div class="stats-container">
+    <!-- Özet Kartları -->
+    <div class="stats-summary">
+        <div class="stat-card">
+            <span class="stat-icon">📊</span>
+            <h4>Toplam Kayıt</h4>
+            <p>@Model.ToplamKayit adet</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">⚖️</span>
+            <h4>Toplam Miktar</h4>
+            <p>@Model.ToplamMiktar.ToString("N1") kg</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">🌳</span>
+            <h4>Kurtarılan Ağaç</h4>
+            <p>@Model.KurtarilanAgac.ToString("N1") adet</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">💧</span>
+            <h4>Su Tasarrufu</h4>
+            <p>@Model.TasarrufEdilenSu.ToString("N0") Lt</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">⚡</span>
+            <h4>Enerji Tasarrufu</h4>
+            <p>@Model.TasarrufEdilenEnerji.ToString("N1") kWh</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-icon">🌍</span>
+            <h4>Önlenen CO2</h4>
+            <p>@Model.OnlenenEmisyon.ToString("N1") kg</p>
+        </div>
+    </div>
+
+    <!-- Tür Bazlı İstatistikler -->
+    <div class="stats-section">
+        <h3>♻️ Tür Bazlı Dağılım</h3>
+        <div class="stats-chart">
+            @if (Model.TurBazliDagilim.Any())
+            {
+                foreach (var tur in Model.TurBazliDagilim)
+                {
+                    var yuzde = Model.ToplamMiktar > 0 ? (tur.Value / Model.ToplamMiktar) * 100 : 0;
+                    <div class="chart-item">
+                        <div class="chart-label">
+                            <span>@tur.Key</span>
+                            <span>@tur.Value.ToString("N1") kg</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: @yuzde%"></div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="no-data-message">
+                    <span>📊</span>
+                    <p>Henüz tür bazlı veri bulunmuyor.</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Aylık İstatistikler -->
+    <div class="stats-section">
+        <h3>🌍 Tür Bazlı Çevresel Etki</h3>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <h4>Kağıt</h4>
+                <div class="impact-stats">
+                    <span>🌳 @Model.KagitEtki.Agac.ToString("N1") ağaç</span>
+                    <span>💧 @Model.KagitEtki.Su.ToString("N0") Lt</span>
+                    <span>⚡ @Model.KagitEtki.Enerji.ToString("N1") kWh</span>
+                </div>
+            </div>
+            <div class="impact-card">
+                <h4>Plastik</h4>
+                <div class="impact-stats">
+                    <span>💧 @Model.PlastikEtki.Su.ToString("N0") Lt</span>
+                    <span>⚡ @Model.PlastikEtki.Enerji.ToString("N1") kWh</span>
+                    <span>🌍 @Model.PlastikEtki.Emisyon.ToString("N1") kg CO2</span>
+                </div>
+            </div>
+            <div class="impact-card">
+                <h4>Cam</h4>
+                <div class="impact-stats">
+                    <span>💧 @Model.CamEtki.Su.ToString("N0") Lt</span>
+                    <span>⚡ @Model.CamEtki.Enerji.ToString("N1") kWh</span>
+                    <span>🌍 @Model.CamEtki.Emisyon.ToString("N1") kg CO2</span>
+                </div>
+            </div>
+            <div class="impact-card">
+                <h4>Metal</h4>
+                <div class="impact-stats">
+                    <span>💧 @Model.MetalEtki.Su.ToString("N0") Lt</span>
+                    <span>⚡ @Model.MetalEtki.Enerji.ToString("N1") kWh</span>
+                    <span>🌍 @Model.MetalEtki.Emisyon.ToString("N1") kg CO2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <h3>🎯 Yıllık Hedefler</h3>
+        <div class="goals-grid">
+            <div class="goal-card">
+                <h4>Toplam Geri Dönüşüm</h4>
+                <div class="progress-circle" data-progress="@Model.YillikHedefYuzdesi">
+                    <span>@Model.ToplamMiktar.ToString("N0") / 1000 kg</span>
+                </div>
+            </div>
+            <div class="goal-card">
+                <h4>Kurtarılan Ağaç</h4>
+                <div class="progress-circle" data-progress="@Model.AgacHedefYuzdesi">
+                    <span>@Model.KurtarilanAgac.ToString("N0") / 100 adet</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <h3>📈 Çevresel Etki Gelişimi</h3>
+        <div class="timeline">
+            @foreach (var etki in Model.EtkiGelisimi)
+            {
+                <div class="timeline-item">
+                    <div class="timeline-date">@etki.Tarih.ToString("MMM yyyy")</div>
+                    <div class="timeline-content">
+                        <p>🌳 @etki.KurtarilanAgac ağaç</p>
+                        <p>💧 @etki.TasarrufEdilenSu Lt su</p>
+                        <p>⚡ @etki.TasarrufEdilenEnerji kWh</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <h3>🎯 Kişisel Hedeflerim</h3>
+        
+        <!-- Hedef Ekleme Formu -->
+        <form asp-action="HedefEkle" method="post" class="hedef-form">
+            <select name="HedefTuru" required>
+                <option value="Kagit">Kağıt</option>
+                <option value="Plastik">Plastik</option>
+                <option value="Cam">Cam</option>
+                <option value="Metal">Metal</option>
+            </select>
+            <input type="number" name="HedefMiktar" placeholder="Hedef Miktar (kg)" required>
+            <input type="date" name="BitisTarihi" required>
+            <button type="submit">Hedef Ekle</button>
+        </form>
+
+        <!-- Aktif Hedefler -->
+        <div class="hedefler-grid">
+            @foreach (var hedef in Model.AktifHedefler)
+            {
+                <div class="hedef-card">
+                    <h4>@hedef.Hedef.HedefTuru</h4>
+                    <div class="hedef-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: @hedef.TamamlanmaYuzdesi%"></div>
+                        </div>
+                        <span>@hedef.GuncelMiktar.ToString("N1") / @hedef.Hedef.HedefMiktar kg</span>
+                    </div>
+                    <p>@hedef.KalanGun gün kaldı</p>
+                    <form asp-action="HedefSil" method="post">
+                        <input type="hidden" name="id" value="@hedef.Hedef.Id">
+                        <button type="submit">Hedefi Sil</button>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div> 
+

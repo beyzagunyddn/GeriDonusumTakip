@@ -1,0 +1,122 @@
+@model UygulamaKullanici
+@{
+    ViewData["Title"] = "Profil";
+    Layout = "_PanelLayout";
+}
+
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-avatar">
+            <span class="avatar-text">@Model.Ad[0]@Model.Soyad[0]</span>
+        </div>
+        <h2>@Model.Ad @Model.Soyad</h2>
+        <p class="user-level">Seviye: @(Model.ToplamPuan / 100 + 1)</p>
+    </div>
+
+    <div class="badges-section">
+        <h3>🏆 Rozetlerim</h3>
+        <div class="badges-grid">
+            @if (Model.Rozetler.Contains("İlkKayit"))
+            {
+                <div class="badge-card active">
+                    <span class="badge-icon">🌱</span>
+                    <h4>İlk Adım</h4>
+                    <p>İlk geri dönüşüm kaydını oluşturdun!</p>
+                </div>
+            }
+            else
+            {
+                <div class="badge-card locked">
+                    <span class="badge-icon">🔒</span>
+                    <h4>İlk Adım</h4>
+                    <p>İlk geri dönüşüm kaydını oluştur</p>
+                </div>
+            }
+
+            @if (Model.Rozetler.Contains("Bronz"))
+            {
+                <div class="badge-card active">
+                    <span class="badge-icon">🥉</span>
+                    <h4>Bronz Dönüşümcü</h4>
+                    <p>10 geri dönüşüm kaydına ulaştın!</p>
+                </div>
+            }
+            else
+            {
+                <div class="badge-card locked">
+                    <span class="badge-icon">🔒</span>
+                    <h4>Bronz Dönüşümcü</h4>
+                    <p>10 geri dönüşüm kaydına ulaş</p>
+                </div>
+            }
+
+            @if (Model.Rozetler.Contains("Gumus"))
+            {
+                <div class="badge-card active">
+                    <span class="badge-icon">🥈</span>
+                    <h4>Gümüş Dönüşümcü</h4>
+                    <p>50 geri dönüşüm kaydına ulaştın!</p>
+                </div>
+            }
+            else
+            {
+                <div class="badge-card locked">
+                    <span class="badge-icon">🔒</span>
+                    <h4>Gümüş Dönüşümcü</h4>
+                    <p>50 geri dönüşüm kaydına ulaş</p>
+                </div>
+            }
+
+            @if (Model.Rozetler.Contains("Altin"))
+            {
+                <div class="badge-card active">
+                    <span class="badge-icon">🥇</span>
+                    <h4>Altın Dönüşümcü</h4>
+                    <p>100 geri dönüşüm kaydına ulaştın!</p>
+                </div>
+            }
+            else
+            {
+                <div class="badge-card locked">
+                    <span class="badge-icon">🔒</span>
+                    <h4>Altın Dönüşümcü</h4>
+                    <p>100 geri dönüşüm kaydına ulaş</p>
+                </div>
+            }
+
+            @if (Model.Rozetler.Contains("AgacDostu"))
+            {
+                <div class="badge-card active">
+                    <span class="badge-icon">🌳</span>
+                    <h4>Ağaç Dostu</h4>
+                    <p>100kg kağıt geri dönüşümü yaptın!</p>
+                </div>
+            }
+            else
+            {
+                <div class="badge-card locked">
+                    <span class="badge-icon">🔒</span>
+                    <h4>Ağaç Dostu</h4>
+                    <p>100kg kağıt geri dönüşümü yap</p>
+                </div>
+            }
+
+            @if (Model.Rozetler.Contains("SuKoruyucu"))
+            {
+                <div class="badge-card active">
+                    <span class="badge-icon">💧</span>
+                    <h4>Su Koruyucu</h4>
+                    <p>1000 litre su tasarrufu sağladın!</p>
+                </div>
+            }
+            else
+            {
+                <div class="badge-card locked">
+                    <span class="badge-icon">🔒</span>
+                    <h4>Su Koruyucu</h4>
+                    <p>1000 litre su tasarrufu sağla</p>
+                </div>
+            }
+        </div>
+    </div>
+</div> 

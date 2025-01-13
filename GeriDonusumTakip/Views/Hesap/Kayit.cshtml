@@ -1,0 +1,70 @@
+@model GeriDonusumTakip.Models.KayitModel
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="eco-icons">
+        <span class="eco-icon">♻️</span>
+        <span class="eco-icon">🌱</span>
+        <span class="eco-icon">🌿</span>
+        <span class="eco-icon">🍃</span>
+        <span class="eco-icon">🌲</span>
+        <span class="eco-icon">♻️</span>
+        <span class="eco-icon">🌱</span>
+        <span class="eco-icon">🌿</span>
+    </div>
+    <div class="eco-card">
+        <h1 class="eco-title">Geri Dönüşüm Takip Sistemi</h1>
+        <h2 class="eco-subtitle">Kayıt Ol</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <input asp-for="Ad" class="form-control" placeholder=" ">
+                <label>Ad</label>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Soyad" class="form-control" placeholder=" ">
+                <label>Soyad</label>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Eposta" class="form-control" type="email" placeholder=" ">
+                <label>E-posta</label>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Sifre" class="form-control" type="password" placeholder=" ">
+                <label>Şifre</label>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="SifreOnay" class="form-control" type="password" placeholder=" ">
+                <label>Şifre Onayı</label>
+            </div>
+
+            <button type="submit" class="eco-btn">Kayıt Ol</button>
+        </form>
+
+        <div class="eco-link">
+            <span>Zaten hesabınız var mı? </span>
+            <a href="/Hesap/Giris">Giriş Yap</a>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

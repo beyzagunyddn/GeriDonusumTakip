@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Geri Dönüşüm Takip</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="~/css/panel.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="floating-leaves">
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🌿</div>
+    </div>
+
+    <div class="dashboard">
+        <!-- Sol Menü -->
+        <nav class="dashboard-nav">
+            <div class="nav-header">
+                <h1>Geri Dönüşüm Takip</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="@(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
+                    <a href="/Panel/Index">
+                        <span>🏠</span> Ana Sayfa
+                    </a>
+                </li>
+                <li class="@(ViewContext.RouteData.Values["action"].ToString() == "Istatistikler" ? "active" : "")">
+                    <a href="/Panel/Istatistikler">
+                        <span>📊</span> İstatistikler
+                    </a>
+                </li>
+                <li class="@(ViewContext.RouteData.Values["action"].ToString() == "Profil" ? "active" : "")">
+                    <a href="/Panel/Profil">
+                        <span>👤</span> Profil
+                    </a>
+                </li>
+                <li class="nav-bottom">
+                    <form asp-controller="Hesap" asp-action="Cikis" method="post">
+                        <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
+                            <span>🚪</span> Çıkış Yap
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Ana İçerik -->
+        <main class="dashboard-main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <div class="eco-icons">
+        <span class="eco-icon">♻️</span>
+        <span class="eco-icon">🌱</span>
+        <span class="eco-icon">🌿</span>
+        <span class="eco-icon">🍃</span>
+        <span class="eco-icon">🌲</span>
+        <span class="eco-icon">♻️</span>
+        <span class="eco-icon">🌱</span>
+        <span class="eco-icon">🌿</span>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/panel.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

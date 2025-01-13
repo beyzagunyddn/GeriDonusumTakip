@@ -1,0 +1,79 @@
+@model GeriDonusum
+@{
+    ViewData["Title"] = "Yeni Geri Dönüşüm Kaydı";
+    Layout = "_PanelLayout";
+}
+
+<div class="form-container">
+    <div class="form-header">
+        <h2>🌱 Yeni Geri Dönüşüm Kaydı</h2>
+        <p>Geri dönüşüm verilerinizi buradan girebilirsiniz</p>
+    </div>
+
+    <form asp-action="GeriDonusumKayit" method="post" class="recycling-form">
+        <div class="form-group">
+            <label asp-for="Miktar">Geri Dönüşüm Miktarı (kg)</label>
+            <div class="input-group">
+                <span class="input-icon">⚖️</span>
+                <input asp-for="Miktar" type="number" step="0.1" class="form-control" placeholder="Örn: 5.5" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Tur">Geri Dönüşüm Türü</label>
+            <div class="input-group">
+                <span class="input-icon">♻️</span>
+                <select asp-for="Tur" class="form-control" required>
+                    <option value="">Seçiniz...</option>
+                    <option value="Kagit">Kağıt</option>
+                    <option value="Plastik">Plastik</option>
+                    <option value="Cam">Cam</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Elektronik">Elektronik</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Tarih">Tarih</label>
+            <div class="input-group">
+                <span class="input-icon">📅</span>
+                <input asp-for="Tarih" type="date" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Notlar">Notlar (İsteğe bağlı)</label>
+            <div class="input-group">
+                <span class="input-icon">📝</span>
+                <textarea asp-for="Notlar" class="form-control" rows="3" 
+                    placeholder="Eklemek istediğiniz notları buraya yazabilirsiniz..."></textarea>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">
+                <span class="btn-icon">✨</span>
+                Kaydet
+            </button>
+            <a href="@Url.Action("GeriDonusumListesi", "Panel")" class="btn-list">
+                <span class="btn-icon">📋</span>
+                Kayıtlarım
+            </a>
+            <a href="@Url.Action("Index", "Panel")" class="btn-cancel">
+                <span class="btn-icon">←</span>
+                Geri Dön
+            </a>
+        </div>
+    </form>
+</div>
+
+@if (TempData["YeniRozet"] != null)
+{
+    <div class="achievement-notification">
+        <div class="achievement-badge">
+            <span class="badge-icon">🏆</span>
+            <span class="badge-text">@TempData["YeniRozet"]</span>
+        </div>
+    </div>
+} 

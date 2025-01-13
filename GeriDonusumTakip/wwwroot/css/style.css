@@ -1,0 +1,192 @@
+/* Ana stiller */
+body {
+    background: url('/img/nature-bg.jpg') center/cover fixed;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(44, 94, 30, 0.92), 
+        rgba(76, 175, 80, 0.85)
+    );
+    z-index: -1;
+}
+
+/* Kart tasarımı */
+.eco-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1.8rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 340px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.eco-title {
+    color: #2c5e1e;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.eco-subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Form elemanları */
+.form-group {
+    position: relative;
+    margin-bottom: 0.8rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px 12px;
+    background: white;
+    border: 2px solid #e1e1e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #2c5e1e;
+    box-shadow: 0 0 0 3px rgba(44, 94, 30, 0.1);
+    outline: none;
+}
+
+.form-group label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: 0;
+    left: 10px;
+    background: white;
+    padding: 0 5px;
+    font-size: 0.8rem;
+    color: #2c5e1e;
+}
+
+/* Buton */
+.eco-btn {
+    width: 90%;
+    padding: 10px;
+    margin-top: 0.5rem;
+    background: linear-gradient(45deg, #2c5e1e, #4CAF50);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.eco-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 94, 30, 0.3);
+}
+
+/* Link */
+.eco-link {
+    margin-top: 1.2rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.eco-link a {
+    color: #2c5e1e;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.eco-link a:hover {
+    text-decoration: underline;
+}
+
+/* Uçuşan emojiler */
+.eco-icons {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.eco-icon {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 15s ease-in-out infinite;
+}
+
+/* Emojileri rastgele konumlandırma */
+.eco-icon:nth-child(1) { left: 5%; top: 20%; animation-delay: 0s; }
+.eco-icon:nth-child(2) { left: 25%; top: 40%; animation-delay: -2s; }
+.eco-icon:nth-child(3) { left: 45%; top: 10%; animation-delay: -4s; }
+.eco-icon:nth-child(4) { left: 65%; top: 70%; animation-delay: -6s; }
+.eco-icon:nth-child(5) { left: 85%; top: 30%; animation-delay: -8s; }
+.eco-icon:nth-child(6) { left: 15%; top: 60%; animation-delay: -10s; }
+.eco-icon:nth-child(7) { left: 35%; top: 80%; animation-delay: -12s; }
+.eco-icon:nth-child(8) { left: 75%; top: 50%; animation-delay: -14s; }
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(10px, -20px) rotate(10deg);
+    }
+    66% {
+        transform: translate(-10px, 20px) rotate(-10deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* Hata mesajları */
+.validation-summary-errors {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.validation-summary-errors ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
