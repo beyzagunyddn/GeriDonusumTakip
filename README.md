@@ -4,7 +4,7 @@ Bu proje, Web Tabanlı Programlama dersinin final projesi olarak geliştirilmiş
 Projede yer alan tüm tasarım ve geliştirme işlemleri, Beyzanur Günaydın tarafından yapılmıştır. Kullanıcılar, bu sistem aracılığıyla geri dönüşüm faaliyetlerini kaydedebilir, çevresel katkılarını takip edebilir ve çeşitli rozetlerle ödüllendirilebilirler.
 
 Bu proje, çevre bilincini artırmayı ve sürdürülebilir yaşam tarzlarını teşvik etmeyi hedeflemektedir.
-
+* Projenin videosu için linke tıklayabilirsiniz -> https://www.youtube.com/watch?v=zUx8UT26iX4
 
 
 ## GİRİŞ YAP SAYFASI:
